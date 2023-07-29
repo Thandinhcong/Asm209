@@ -1,11 +1,9 @@
 import React from 'react'
-
-type Props = {}
-
-const Header = (props: Props) => {
+import "./header.css"
+const Header = () => {
     return (
         <div>
-            <nav className="navbar navbar-expand-lg">
+            <nav className="navbar navbar-expand-lg" id='header'>
                 <div className="container">
                     <a className="navbar-brand" href="index.html">
                         <i className="bi-back" />
