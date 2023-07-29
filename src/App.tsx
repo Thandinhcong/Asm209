@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 import "bootstrap/dist/css/bootstrap.min.css";
 import NotFoundPage from './pages/notFound';
 import Layout from './pages/clients/HomePage';
-
 function App() {
   return (
     <BrowserRouter>
