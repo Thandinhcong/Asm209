@@ -1,4 +1,4 @@
-
+import { useEffect } from "react"
 import Footer from '../Footer'
 import "../../../css/bootstrap-icons.css"
 import "../../../css/bootstrap.min.css"
@@ -9,7 +9,9 @@ import Contacts from '../contacts'
 import Questions from '../quetions'
 
 const Layout = () => {
-
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
     return (
         <div>
             <Header />
