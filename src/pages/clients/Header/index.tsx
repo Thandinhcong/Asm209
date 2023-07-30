@@ -1,17 +1,19 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import "./header.css"
+import { Link } from 'react-router-dom'
 
 const Header = () => {
+
     return (
         <div>
             <nav className="navbar navbar-expand-lg" id='header'>
                 <div className="container">
-                    <a className="navbar-brand" href="index.html">
+                    <Link className="navbar-brand" to="/">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-subtract fs-3" viewBox="0 0 16 16">
                             <path d="M0 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2h2a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2H2a2 2 0 0 1-2-2V2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H2z" />
                         </svg>
                         <span>Topic</span>
-                    </a>
+                    </Link>
                     <div className="d-lg-none ms-auto me-4">
                         <a href="#top" className="navbar-icon bi-person smoothscroll" />
                     </div>
@@ -29,9 +31,9 @@ const Header = () => {
                     <div className="collapse navbar-collapse" id="navbarNav">
                         <ul className="navbar-nav ms-lg-5 me-lg-auto">
                             <li className="nav-item">
-                                <a className="nav-link click-scroll" href="#section_1">
+                                <Link className="nav-link click-scroll" to="/">
                                     Home
-                                </a>
+                                </Link>
                             </li>
                             <li className="nav-item">
                                 <a className="nav-link click-scroll" href="#section_2">
@@ -49,9 +51,9 @@ const Header = () => {
                                 </a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link click-scroll" href="#section_5">
+                                <Link className="nav-link click-scroll" to="/contacts">
                                     Contact
-                                </a>
+                                </Link>
                             </li>
                             <li className="nav-item dropdown">
                                 <a

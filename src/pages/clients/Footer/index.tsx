@@ -83,12 +83,12 @@ const Footer = (props: Props) => {
                                 </ul>
                             </div>
                             <p className="copyright-text mt-lg-5 mt-4">
-                                Copyright © 2048 Topic Listing Center. All rights reserved.
+                                Copyright © 2023 Bởi anh Đinh Công Thản đẹp zai nhất vũ trụ.
                                 <br />
                                 <br />
                                 Design:{" "}
                                 <a rel="nofollow" href="https://templatemo.com" target="_blank">
-                                    TemplateMo
+                                    Đi hỏi anh Thản đấy
                                 </a>{" "}
                                 Distribution <a href="https://themewagon.com">ThemeWagon</a>
                             </p>
