@@ -8,7 +8,7 @@ const Questions = () => {
             <div className="container">
                 <div className="row">
                     <div className="col-lg-6 col-12">
-                        <h2 className="mb-4">Câu hỏi về chúng tôi</h2>
+                        <h2 className="mb-4 fs-1">Câu hỏi về chúng tôi</h2>
                     </div>
                     <div className="clearfix" />
                     <div className="col-lg-5 col-12">

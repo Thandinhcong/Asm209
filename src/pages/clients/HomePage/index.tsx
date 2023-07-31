@@ -7,6 +7,8 @@ import "../../../js/bootstrap.bundle.min"
 import Header from '../Header'
 import Contacts from '../contacts'
 import Questions from '../quetions'
+import Item from "../Items"
+import Banner from "../banner"
 
 const Layout = () => {
     useEffect(() => {
@@ -15,6 +17,8 @@ const Layout = () => {
     return (
         <div>
             <Header />
+            <Banner />
+            <Item />
             <Questions />
             <Contacts />
             <Footer />
