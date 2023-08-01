@@ -1,11 +1,10 @@
 import mongoose from "mongoose";
 
-const userSchema = new mongoose.Schema(
+const userSchema = mongoose.Schema(
     {
         name: {
-            type: Schema.Types.String,
-            minLength: 6,
-            maxLength: 255,
+            type: String,
+            require: true
         },
         email: {
             type: String,

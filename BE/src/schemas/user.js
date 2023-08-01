@@ -23,13 +23,6 @@ export const signupSchema = joi.object({
     gender: joi.string(),
     date: joi.date(),
 })
-// 1. string empty:không được để trống
-// 2. any.required :bắt buộc phải nhập
-// 3.
-// 3. any .required :"bắt nuộc phải nhập"
-// 4. string.min : bắt buộc có bao nhiêu kí tự
-// 5. any.only :Xác nhận giá trị config không khớp
-
 
 export const signinSchema = joi.object({
 
