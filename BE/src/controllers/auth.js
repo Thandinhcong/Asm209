@@ -31,7 +31,7 @@ export const signup = async (req, res) => {
             email,
             password: hashPassword
         });
-        const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET);
+        const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, { expiresIn: 10 });
         return res.status(201).json({
             message: "Đăng kí thành công",
             token,
@@ -47,35 +47,36 @@ export const signup = async (req, res) => {
 }
 export const signin = async (req, res) => {
     try {
-        const { email, password } = req.body;
-        const { error } = signinSchema.validate({ email, password }, { abortEarly: false });
+        const { error } = signinSchema.validate(req.body, { abortEarly: false });
         if (error) {
-            const errors = error.details.map((error) => error.message);
+            const errors = error.details.map((err) => err.message);
             return res.status(400).json({
-                message: errors,
+                messages: errors,
             });
         }
-        const user = await User.findOne({ email });
+        // kiểm tra email có tồn tại hay không
+        const user = await User.findOne({ email: req.body.email });
         if (!user) {
-            return res.status(400).json({ message: "Tài khoản không tồn tại" });
+            return res.status(400).json({
+                messages: "Email không tồn tại",
+            });
         }
-
-        const isMatch = await bcrypt.compare(password, user.password);
-
+        // kiểm tra mật khẩu
+        const isMatch = await bcrypt.compare(req.body.password, user.password);
         if (!isMatch) {
-            return res.status(400).json({ message: "Mật khẩu không khớp" });
+            return res.status(400).json({
+                messages: "Sai mật khẩu",
+            });
         }
 
-        const token = jwt.sign({ _id: user._id }, "123456");
+        // tạo tuken
 
-        const { password: excludedPassword, ...userData } = user;
-
-        res.status(200).json({
-            data: userData,
+        const token = jwt.sign({ id: user._id }, "danhsapwebtruong", { expiresIn: "1d" });
+        user.password = undefined;
+        return res.status(200).json({
+            message: "Đăng nhập thành công",
             accessToken: token,
+            user,
         });
-
-    } catch (error) {
-        return res.status(400).json({ message: error.message });
-    }
+    } catch (error) { }
 };
