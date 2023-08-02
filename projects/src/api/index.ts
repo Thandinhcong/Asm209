@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const instances = axios.create({
-    baseURL: import.meta.env.PORT,
+    baseURL: "http://localhost:8080",
 })
 
 export default instances
