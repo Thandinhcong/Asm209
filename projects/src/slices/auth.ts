@@ -1,6 +1,6 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import { IUser } from "../interfaces/auth";
-import { signup } from "../actions/auth";
+import { signin, signup } from "../actions/auth";
 
 
 const initialState = {
@@ -16,7 +16,6 @@ const authSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         //signup
-
         builder.addCase(signup.pending, (state) => {
             state.isLoading = true;
             state.error = ""
@@ -35,6 +34,24 @@ const authSlice = createSlice({
             state.error = "signup failed"
         })
 
+        //signin
+        builder.addCase(signin.pending, (state) => {
+            state.isLoading = true;
+            state.error = ""
+        })
+        builder.addCase(signin.fulfilled, (state, action) => {
+            state.isLoading = false;
+            if (state.users.find((user) => user === action.payload)) {
+                // Tài khoản đã tồn tại trong danh sách users
+                state.users.push(action.payload);
+            } else {
+                state.error = 'Thông tin tài khoản hoặc mật khẩu không chính sác !';
+            }
+        })
+        builder.addCase(signin.rejected, (state) => {
+            state.isLoading = false;
+            state.error = "signin failed"
+        })
     }
 });
 export const authReducer = authSlice.reducer;

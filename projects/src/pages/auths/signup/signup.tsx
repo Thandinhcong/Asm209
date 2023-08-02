@@ -22,7 +22,6 @@ const Signup = () => {
     const onHandleSubmit = async (user: SignupForm) => {
         try {
             const response = await dispatch(signup(user));
-            console.log(response);
             if (response.type === "users/signup/rejected") {
                 toast.error("Email đã tồn tại !", {
                     position: toast.POSITION.TOP_RIGHT
@@ -41,7 +40,6 @@ const Signup = () => {
             toast.error("Có lỗi xảy ra vui lòng thử lại !", {
                 position: toast.POSITION.TOP_RIGHT
             })
-            console.log(error);
         }
     }
     useEffect(() => {
@@ -49,100 +47,102 @@ const Signup = () => {
     }, [])
     return (
         <>
-            {isLoading && <div>Loading...</div>}
             {error && <div>{error}</div>}
+            {isLoading && <div>
+                <div className='login'>
+                    <h1 className="w3ls">Official Signup Form</h1>
+                    <div className="content-w3ls">
+                        <div className="content-agile1">
+                            <h2 className="agileits1">Official</h2>
+                            <p className="agileits2">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            </p>
+                        </div>
+                        <div className="content-agile2">
+                            <form onSubmit={handleSubmit(onHandleSubmit)}>
+                                <div className="formsignin form-control w3layouts">
+                                    <input
+                                        type="text"
+                                        id="firstname"
+                                        placeholder="First Name"
+                                        title="Please enter your First Name"
+                                        {...register("name")}
+                                    />
+                                </div>
+                                <div className='text-danger'>{errors.name && errors.name?.message}</div>
+                                <div className="formsignin form-control w3layouts">
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        placeholder="mail@example.com"
+                                        title="Please enter a valid email"
+                                        {...register("email")}
+                                    />
+                                </div>
+                                <div className='text-danger'>{errors.email && errors.email?.message}</div>
+
+                                <div className="formsignin form-control agileinfo">
+                                    <input
+                                        type="password"
+                                        className="lock"
+                                        placeholder="Password"
+                                        id="password1"
+                                        {...register("password")}
+
+                                    />
+                                </div>
+                                <div className='text-danger'>{errors.password && errors.password?.message}</div>
+
+                                <div className="formsignin form-control   agileinfo">
+                                    <input
+                                        type="password"
+                                        className="lock"
+                                        placeholder="Confirm Password"
+                                        id="password2"
+                                        {...register("confirmPassword")}
+                                    />
+                                </div>
+                                <div className='text-danger'>{errors.confirmPassword && errors.confirmPassword?.message}</div>
+
+                                <button className="register">
+                                    <ToastContainer />
+                                    Đăng kí
+                                </button>
+                                <p className='text-light ms-5 ps-5 mb-3'>Bạn đã có tài khoản? <Link className='text-primary' to="/login">Đăng nhập</Link></p>
+                            </form>
+                            <p className="wthree w3l">
+                                Fast Signup With Your Favourite Social Profile
+                            </p>
+                            <ul className="social-agileinfo wthree2">
+                                <li>
+                                    <Link to="#">
+                                        <i className="fa fa-facebook" />
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link to="#">
+                                        <i className="fa fa-youtube" />
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link to="#">
+                                        <i className="fa fa-twitter" />
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link to="#">
+                                        <i className="fa fa-google-plus" />
+                                    </Link>
+                                </li>
+                            </ul>
+                        </div>
+                        <div className="clear" />
+                    </div>
+
+                </div >
+
+            </div>}
             <Header />
-            <div className='login'>
-                <h1 className="w3ls">Official Signup Form</h1>
-                <div className="content-w3ls">
-                    <div className="content-agile1">
-                        <h2 className="agileits1">Official</h2>
-                        <p className="agileits2">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        </p>
-                    </div>
-                    <div className="content-agile2">
-                        <form onSubmit={handleSubmit(onHandleSubmit)}>
-                            <div className="formsignin form-control w3layouts">
-                                <input
-                                    type="text"
-                                    id="firstname"
-                                    placeholder="First Name"
-                                    title="Please enter your First Name"
-                                    {...register("name")}
-                                />
-                            </div>
-                            <div className='text-danger'>{errors.name && errors.name?.message}</div>
-                            <div className="formsignin form-control w3layouts">
-                                <input
-                                    type="email"
-                                    id="email"
-                                    placeholder="mail@example.com"
-                                    title="Please enter a valid email"
-                                    {...register("email")}
-                                />
-                            </div>
-                            <div className='text-danger'>{errors.email && errors.email?.message}</div>
-
-                            <div className="formsignin form-control agileinfo">
-                                <input
-                                    type="password"
-                                    className="lock"
-                                    placeholder="Password"
-                                    id="password1"
-                                    {...register("password")}
-
-                                />
-                            </div>
-                            <div className='text-danger'>{errors.password && errors.password?.message}</div>
-
-                            <div className="formsignin form-control   agileinfo">
-                                <input
-                                    type="password"
-                                    className="lock"
-                                    placeholder="Confirm Password"
-                                    id="password2"
-                                    {...register("confirmPassword")}
-                                />
-                            </div>
-                            <div className='text-danger'>{errors.confirmPassword && errors.confirmPassword?.message}</div>
-
-                            <button className="register">
-                                <ToastContainer />
-                                Đăng kí
-                            </button>
-                            <p className='text-light ms-5 ps-5 mb-3'>Bạn đã có tài khoản? <Link className='text-primary' to="/login">Đăng nhập</Link></p>
-                        </form>
-                        <p className="wthree w3l">
-                            Fast Signup With Your Favourite Social Profile
-                        </p>
-                        <ul className="social-agileinfo wthree2">
-                            <li>
-                                <Link to="#">
-                                    <i className="fa fa-facebook" />
-                                </Link>
-                            </li>
-                            <li>
-                                <Link to="#">
-                                    <i className="fa fa-youtube" />
-                                </Link>
-                            </li>
-                            <li>
-                                <Link to="#">
-                                    <i className="fa fa-twitter" />
-                                </Link>
-                            </li>
-                            <li>
-                                <Link to="#">
-                                    <i className="fa fa-google-plus" />
-                                </Link>
-                            </li>
-                        </ul>
-                    </div>
-                    <div className="clear" />
-                </div>
-
-            </div >
             <Footer />
         </>
 
