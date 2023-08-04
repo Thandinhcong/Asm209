@@ -1,6 +1,3 @@
-import React from 'react'
-
-
 const Contacts = () => {
     return (
         <section className="contact-section section-padding section-bg" id="section_5">

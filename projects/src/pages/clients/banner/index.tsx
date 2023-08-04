@@ -1,7 +1,7 @@
-import React from 'react'
-type Props = {}
+
+
 import "./banner.css"
-const Banner = (props: Props) => {
+const Banner = () => {
     return (
         <section
             className="hero-section d-flex justify-content-center align-items-center"

@@ -9,7 +9,6 @@ import { IProduct } from "../../../interfaces/products";
 const Item = () => {
     const dispatch = useAppDispatch();
     const { products, isLoading } = useAppSelector((state: RootState) => state.products)
-    console.log("products", products?.docs);
     const product = products?.docs
 
     useEffect(() => {
