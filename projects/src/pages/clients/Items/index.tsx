@@ -5,14 +5,16 @@ import { listProducts } from "../../../actions/product";
 import { Link } from "react-router-dom";
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
+import { IProduct } from "../../../interfaces/products";
 const Item = () => {
     const dispatch = useAppDispatch();
     const { products, isLoading } = useAppSelector((state: RootState) => state.products)
-    console.log("products", products);
+    console.log("products", products?.docs);
+    const product = products?.docs
 
     useEffect(() => {
         dispatch(listProducts())
-    }, [])
+    }, [dispatch])
     return (
         <>
             {isLoading ? (<div>
@@ -114,8 +116,8 @@ const Item = () => {
                                         tabIndex={0}
                                     >
                                         <div className="row">
-                                            {products ?
-                                                (products?.map((item: any) => (
+                                            {product ?
+                                                (product.map((item: IProduct) => (
                                                     <div key={item._id} className="col-lg-4 col-md-6 col-12 mb-4 mb-ldivg-0">
                                                         <div className="custom-block bg-white shadow-lg">
                                                             <Link to={`detail/${item._id}`}>
