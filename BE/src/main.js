@@ -6,17 +6,14 @@ import routerProduct from "./routes/product";
 import cateRouter from "./routes/categories";
 import routerUser from "./routes/user";
 
-
 const app = express();
 
 dotenv.config();
 
-mongoose.connect(process.env.URI)
-
-
 app.use(express.json());
 app.use(cors());
-app.use("/api", routerProduct)
-app.use("/api", cateRouter)
-app.use("/api", routerUser)
+app.use("/api", routerProduct);
+app.use("/api", cateRouter);
+app.use("/api", routerUser);
+mongoose.connect(`mongodb://127.0.0.1:27017/hihi`);
 export const viteNodeApp = app;
