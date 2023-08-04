@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import "./signin.css"
 import "../../../css/font-awesome.min.css"
 import { Link, useNavigate } from 'react-router-dom'
@@ -12,13 +12,14 @@ import { RootState } from '../../../app/store'
 import { signin } from '../../../actions/auth'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Skeleton from 'react-loading-skeleton'
 const Login = () => {
     const dispatch = useAppDispatch();
+    const navigate = useNavigate();
     const { error, isLoading } = useAppSelector((state: RootState) => state.users)
     const { register, handleSubmit, formState: { errors } } = useForm<SigninForm>({
         resolver: yupResolver(signinSchema)
     })
-    const navigate = useNavigate();
     const onHandleSubmit = async (user: SigninForm) => {
         try {
             const response = await dispatch(signin(user));
@@ -37,9 +38,11 @@ const Login = () => {
                 return
             }
         } catch (error) {
-            toast.success("Có lỗi xảy ra vui lòng thử lại!", {
+            toast.error("Có lỗi xảy ra vui lòng thử lại!", {
                 position: toast.POSITION.TOP_RIGHT
             })
+            console.log(error);
+
         }
     }
     useEffect(() => {
@@ -47,10 +50,11 @@ const Login = () => {
     }, [])
     return (
         <>
-            {isLoading && <div>Loading...</div>}
             {error && <div>{error}</div>}
-
             <Header />
+            {isLoading && <div><Skeleton count={2} ></Skeleton>
+
+            </div>}
             <div className='login'>
                 <h1 className="w3ls">Official signin Form</h1>
                 <div className="content-w3ls">
