@@ -1,0 +1,38 @@
+.deltail {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+
+.deltail img {
+    width: 80%;
+    margin-top: 30px;
+}
+
+.count button {
+    border: none;
+    padding: 5px 10px;
+    font-size: 20px;
+}
+
+.count label {
+    font-size: 20px;
+    padding: 5px 10px;
+    background-color: aliceblue;
+}
+
+.salenfil {
+    display: grid;
+
+}
+
+@media (max-width:769px) {
+    .deltail {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .deltail img {
+        width: 100%;
+        align-items: center;
+    }
+}

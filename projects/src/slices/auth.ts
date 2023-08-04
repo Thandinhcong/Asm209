@@ -36,17 +36,17 @@ const authSlice = createSlice({
         })
 
         //signin
-        builder.addCase(signin.pending, (state, action) => {
+        builder.addCase(signin.pending, (state) => {
             state.isLoading = true;
             state.error = ""
         })
         builder.addCase(signin.fulfilled, (state, action) => {
             state.isLoading = false;
-            if (state.users.find((user) => user === action.payload)) {
-                // Tài khoản đã tồn tại trong danh sách users
-                state.users.push(action.payload);
-            } else {
+            if (state.users.find((user) => user !== action.payload)) {
                 state.error = 'Thông tin tài khoản hoặc mật khẩu không chính sác !';
+                return
+            } else {
+                state.users.push(action.payload);
             }
         })
         builder.addCase(signin.rejected, (state) => {

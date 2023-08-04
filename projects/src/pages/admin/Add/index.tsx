@@ -70,11 +70,7 @@ const App: React.FC = () => {
   };
 
   const onFinish = (values: IProduct) => {
-    // Xử lý khi người dùng bấm submit form
     const formData = { ...values, image: imageURL };
-    // console.log("Form values:", values);
-    // console.log("Form values:", formData);
-    // console.log("Image URL:", imageURL); // Kiểm tra giá trị của imageURL trong console log
     addProduct(formData)
       .unwrap()
       .then(() => {

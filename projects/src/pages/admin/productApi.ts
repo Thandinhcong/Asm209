@@ -10,6 +10,18 @@ export const productApi = createApi({
       await pause(1000);
       return fetch(...args);
     },
+    // prepareHeaders: (headers) => {
+    //   const persistedData = localStorage.getItem("persist:root");
+    //   const parsedPersistedData = JSON.parse(persistedData);
+
+    //   if (parsedPersistedData && parsedPersistedData.users && parsedPersistedData.users.users[0].data.accessToken) {
+    //     const accessToken = parsedPersistedData.users.users[0].data.accessToken;
+    //     console.log(accessToken);
+    //   }
+    //   // headers.set("authorization", `Bearer ${token}`)
+    //   // modify header theo từng request
+    //   return headers;
+    // }
   }),
 
   tagTypes: ["Product"],

@@ -1,60 +1,48 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import Footer from '../Footer'
 import Header from '../Header'
-import { useParams } from 'react-router-dom'
-import { useAppDispatch } from '../../../app/hooks'
+import { Link, useParams } from 'react-router-dom'
+import { useAppDispatch, useAppSelector } from '../../../app/hooks'
 import { deltailProduct } from '../../../actions/product'
-
+import { RootState } from '../../../app/store'
+import "./deltail.css"
 const DeTailProduct = () => {
-    const [product, setProduct] = useState({})
     const { id } = useParams();
     const dispatch = useAppDispatch();
 
-    const fetchById = async () => {
-        try {
-            if (id) {
-                // const { data } = await
-                //     console.log(data);
-
-            }
-        } catch (error) {
-            console.log(error);
-
-        }
-    }
-    console.log();
-
+    const { product } = useAppSelector((state: RootState) => state.detail)
     useEffect(() => {
-        fetchById()
+        dispatch(deltailProduct(id))
+        window.scrollTo(0, 0)
     }, [])
+
     return (
         <div>
             <div>
                 <Header />
                 <div className='deltail container p-3'>
-                    <img src='http://gongcha.com.vn/wp-content/uploads/2023/02/Tra-Xanh-Sua-Dau.png' />
+                    <img src={product?.image} />
                     <div>
                         <div className='d-flex'>
-                            <a href="/" className='text-decoration-none' >
+                            <Link to="/" className='text-decoration-none' >
                                 <p className='text-secondary '>TRANG CHỦ/</p>
-                            </a>
+                            </Link>
                             <a href="/" className='text-decoration-none' >
                                 <p className='text-secondary '>QUẦN ÁO</p>
                             </a>
                         </div>
-                        <h3></h3>
+                        <h3>{product?.name}</h3>
                         <div className='d-flex'>
-                            <p className='fs-4 text-primary'></p>
-                            <p className='mt-2 ms-4'></p>
+                            <p className='fs-4 text-primary'>{product?.price}</p>
+                            <p className='mt-2 ms-4'>{product?.original_price}</p>
                         </div>
                         <p>(Tiết kiệm : <span
                             className='text-primary'
                         >
-                            {/* {VND.format((product.original_price) - (product.price))} */}
-
+                            {(product?.original_price) - (product?.price)}
                         </span>)
                         </p>
-                        <span></span>
+                        <span>{product?.description}</span>
                         <div className='d-flex mt-5 mb-5'>
                             <div className='count'>
                                 <button  >-</button>

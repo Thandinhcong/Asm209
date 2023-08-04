@@ -23,6 +23,8 @@ const Login = () => {
     const onHandleSubmit = async (user: SigninForm) => {
         try {
             const response = await dispatch(signin(user));
+            console.log(response);
+
             if (response.type === "users/signin/rejected") {
                 toast.error("Thông tin tài khoản hoặc mật khẩu không chính xác!", {
                     position: toast.POSITION.TOP_RIGHT
@@ -50,7 +52,6 @@ const Login = () => {
     }, [])
     return (
         <>
-            {error && <div>{error}</div>}
             <Header />
             {isLoading && <div><Skeleton count={2} ></Skeleton>
 

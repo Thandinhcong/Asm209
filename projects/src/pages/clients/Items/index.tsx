@@ -7,7 +7,9 @@ import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 const Item = () => {
     const dispatch = useAppDispatch();
-    const { products, error, isLoading } = useAppSelector((state: RootState) => state.products)
+    const { products, isLoading } = useAppSelector((state: RootState) => state.products)
+    console.log("products", products);
+
     useEffect(() => {
         dispatch(listProducts())
     }, [])
@@ -112,34 +114,35 @@ const Item = () => {
                                         tabIndex={0}
                                     >
                                         <div className="row">
-                                            {products?.map((item: any) => (
-                                                <div className="col-lg-4 col-md-6 col-12 mb-4 mb-ldivg-0">
-                                                    <div key={item._id} className="custom-block bg-white shadow-lg">
-                                                        <Link to={`detail/${item._id}`}>
-                                                            <div className="d-flex">
-                                                                <div>
-                                                                    <h5 className="mb-2 fs-5">{item?.name}</h5>
+                                            {products ?
+                                                (products?.map((item: any) => (
+                                                    <div key={item._id} className="col-lg-4 col-md-6 col-12 mb-4 mb-ldivg-0">
+                                                        <div className="custom-block bg-white shadow-lg">
+                                                            <Link to={`detail/${item._id}`}>
+                                                                <div className="d-flex">
+                                                                    <div>
+                                                                        <h5 className="mb-2 fs-5">{item?.name}</h5>
 
+                                                                    </div>
+                                                                    <span className="badge bg-design rounded-pill ms-auto">
+                                                                        14
+                                                                    </span>
                                                                 </div>
-                                                                <span className="badge bg-design rounded-pill ms-auto">
-                                                                    14
-                                                                </span>
-                                                            </div>
-                                                            <img
-                                                                src={item?.image}
-                                                                className="custom-block-image img-fluid"
-                                                                alt=""
-                                                            />
-                                                            <div className="d-flex justify-content-between mt-4">
+                                                                <img
+                                                                    src={item?.image}
+                                                                    className="custom-block-image img-fluid"
+                                                                    alt=""
+                                                                />
+                                                                <div className="d-flex justify-content-between mt-4">
 
-                                                                <span className="fs-4 text-danger">{item?.price}đ</span>
-                                                                <span className="fs-5 mt-1 me-2">{item?.original_price}đ</span>
-                                                            </div>
-                                                        </Link>
+                                                                    <span className="fs-4 text-danger">{item?.price}đ</span>
+                                                                    <span className="fs-5 mt-1 me-2">{item?.original_price}đ</span>
+                                                                </div>
+                                                            </Link>
+                                                        </div>
                                                     </div>
-                                                </div>
 
-                                            ))}
+                                                ))) : ""}
 
                                         </div>
                                     </div>
