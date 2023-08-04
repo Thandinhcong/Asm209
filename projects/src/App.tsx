@@ -1,4 +1,6 @@
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom"
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import NotFoundPage from "./pages/notFound";
 import Layout from "./pages/clients/HomePage";

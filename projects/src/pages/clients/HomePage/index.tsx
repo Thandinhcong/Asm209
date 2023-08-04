@@ -16,6 +16,7 @@ const Layout = () => {
     }, [])
     return (
         <div>
+
             <Header />
             <Banner />
             <Item />
