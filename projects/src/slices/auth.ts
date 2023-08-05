@@ -19,12 +19,10 @@ const authSlice = createSlice({
         builder.addCase(signup.pending, (state) => {
             state.isLoading = true;
             state.error = ""
-
         })
         builder.addCase(signup.fulfilled, (state, action) => {
             state.isLoading = false;
             if (state.users.find((user) => user.email === action.payload.email)) {
-                // Email đã tồn tại trong danh sách users
                 state.error = 'Email đã tồn tại';
             } else {
                 state.users.push(action.payload);
@@ -44,7 +42,6 @@ const authSlice = createSlice({
             state.isLoading = false;
             if (state.users.find((user) => user !== action.payload)) {
                 state.error = 'Thông tin tài khoản hoặc mật khẩu không chính sác !';
-                return
             } else {
                 state.users.push(action.payload);
             }

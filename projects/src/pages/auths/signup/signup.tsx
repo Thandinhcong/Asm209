@@ -15,7 +15,7 @@ import Skeleton from 'react-loading-skeleton'
 const Signup = () => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
-    const { error, isLoading } = useAppSelector((state: RootState) => state.users)
+    const { error, isLoading } = useAppSelector((state: RootState) => state.auth)
     const { register, handleSubmit, formState: { errors } } = useForm<SignupForm>({
         resolver: yupResolver(signupSchema)
     })

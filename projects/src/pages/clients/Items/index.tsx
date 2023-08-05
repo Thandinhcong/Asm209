@@ -13,11 +13,10 @@ const Item = () => {
 
     useEffect(() => {
         dispatch(listProducts())
-    }, [dispatch])
+    }, [])
     return (
         <>
             {isLoading ? (<div>
-                loading...
                 <Skeleton count={5} />
             </div>) : (
                 <section className="explore-section section-padding" id="section_2">

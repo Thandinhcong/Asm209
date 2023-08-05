@@ -25,10 +25,6 @@ const productSlice = createSlice({
             state.isLoading = false
             state.error = "Fail"
         })
-        //detail
-
-
-
     }
 })
 export const productReducer = productSlice.reducer;

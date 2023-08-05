@@ -23,10 +23,10 @@ import { detailProduct } from "../slices/detail";
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['users']
+  whitelist: ['auth']
 }
 const rootReducer = combineReducers({
-  users: authReducer,
+  auth: authReducer,
   products: productReducer,
   detail: detailProduct,
   [productApi.reducerPath]: productApi.reducer,

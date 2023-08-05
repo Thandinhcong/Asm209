@@ -1,3 +1,8 @@
 #header {
     background-color: #35c28c;
 }
+
+.btn-logout {
+    border: none;
+    background-color: #35c28c;
+}
