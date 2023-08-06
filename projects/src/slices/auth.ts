@@ -24,6 +24,7 @@ const authSlice = createSlice({
             state.isLoading = false;
             if (state.users.find((user) => user.email === action.payload.email)) {
                 state.error = 'Email đã tồn tại';
+                return
             } else {
                 state.users.push(action.payload);
             }

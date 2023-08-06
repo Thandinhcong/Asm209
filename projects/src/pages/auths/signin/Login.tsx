@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import "./signin.css"
 import "../../../css/font-awesome.min.css"
 import { Link, useNavigate } from 'react-router-dom'
@@ -20,31 +20,30 @@ const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm<SigninForm>({
         resolver: yupResolver(signinSchema)
     })
-    const onHandleSubmit = async (user: SigninForm) => {
+    const onHandleSubmit = async (users: SigninForm) => {
         try {
-            const response = await dispatch(signin(user));
-            console.log(response);
-
-            if (response.type === "users/signin/rejected") {
-                toast.error("Thông tin tài khoản hoặc mật khẩu không chính xác!", {
+            const response = await dispatch(signin(users)) as any;
+            if (response.payload.data.user.role === "admin") {
+                toast.success("Đăng nhập admin thành công!", {
                     position: toast.POSITION.TOP_RIGHT
                 })
-                return false;
+                setTimeout(() => {
+                    navigate('/admin')
+                }, 2000)
             } else {
                 toast.success("Đăng nhập thành công!", {
                     position: toast.POSITION.TOP_RIGHT
                 })
                 setTimeout(() => {
-                    navigate("/")
+                    navigate('/')
                 }, 2000)
-                return
             }
-        } catch (error) {
+            return
+        }
+        catch (error) {
             toast.error("Có lỗi xảy ra vui lòng thử lại!", {
                 position: toast.POSITION.TOP_RIGHT
             })
-            console.log(error);
-
         }
     }
     useEffect(() => {

@@ -7,7 +7,7 @@ const Header = () => {
     const userJson = localStorage.getItem("persist:root");
     const parsedData = userJson ? JSON.parse(userJson) : null;
     const authData = parsedData?.auth ? JSON.parse(parsedData.auth) : null;
-    const user = authData?.users || [];
+    const user = authData?.users || null;
 
     const [isLogin, setIsLogin] = useState(user);
 

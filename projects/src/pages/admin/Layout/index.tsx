@@ -11,6 +11,7 @@ import { Outlet, Link } from "react-router-dom";
 const { Header, Sider, Content } = Layout;
 const LayOutAdmin = () => {
   const [collapsed, setCollapsed] = useState(false);
+
   const {
     token: { colorBgContainer },
   } = theme.useToken();
