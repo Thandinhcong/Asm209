@@ -15,9 +15,9 @@ const Header = () => {
         const confirmResult = window.confirm("Bạn có muốn đăng xuất không ?");
         if (confirmResult) {
             alert("Đăng xuất thành công");
-            navigate("/");
             localStorage.removeItem('persist:root');
             setIsLogin(null);
+            window.location.href = "/";
         }
     };
 

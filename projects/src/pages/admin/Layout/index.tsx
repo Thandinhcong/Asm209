@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   DashboardOutlined,
   MenuFoldOutlined,
@@ -7,11 +7,22 @@ import {
   VideoCameraOutlined,
 } from "@ant-design/icons";
 import { Layout, Menu, Button, theme } from "antd";
-import { Outlet, Link } from "react-router-dom";
+import { Outlet, Link, useNavigate } from "react-router-dom";
 const { Header, Sider, Content } = Layout;
 const LayOutAdmin = () => {
   const [collapsed, setCollapsed] = useState(false);
+  const navigate = useNavigate();
+  const userJson = localStorage.getItem("persist:root");
+  const parsedData = userJson ? JSON.parse(userJson) : null;
+  const authData = parsedData?.auth ? JSON.parse(parsedData.auth) : null;
+  const users = authData?.users || null;
+  console.log(users);
 
+  useEffect(() => {
+    if (users[0].data.user.role !== "admin") {
+      return navigate("/");
+    }
+  }, [])
   const {
     token: { colorBgContainer },
   } = theme.useToken();
