@@ -2,12 +2,17 @@ import { Button, Form, Input } from 'antd';
 import { useAppDispatch } from '../../../app/hooks';
 import { addCate } from '../../../actions/categories';
 import { ICate } from '../../../interfaces/categories';
+import { useNavigate } from 'react-router-dom';
 
 const AddCategorys = () => {
     const dispatch = useAppDispatch();
+    const navigate = useNavigate();
     const onFinish = (cate: ICate) => {
-        const response = dispatch(addCate(cate))
-        console.log(response);
+        dispatch(addCate(cate))
+        alert("Thêm thành công");
+        setTimeout(() => {
+            navigate("/admin/categories")
+        }, 2000)
     };
 
     const onFinishFailed = (errorInfo: any) => {
@@ -34,7 +39,6 @@ const AddCategorys = () => {
             >
                 <Input />
             </Form.Item>
-
 
             <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
                 <Button type="primary" htmlType="submit">

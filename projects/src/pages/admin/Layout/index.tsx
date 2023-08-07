@@ -16,8 +16,6 @@ const LayOutAdmin = () => {
   const parsedData = userJson ? JSON.parse(userJson) : null;
   const authData = parsedData?.auth ? JSON.parse(parsedData.auth) : null;
   const users = authData?.users || null;
-  console.log(users);
-
   useEffect(() => {
     if (users[0].data.user.role !== "admin") {
       return navigate("/");
@@ -43,7 +41,7 @@ const LayOutAdmin = () => {
             {
               key: "2",
               icon: <VideoCameraOutlined />,
-              label: "nav 2",
+              label: <Link to="/admin/categories">Categorys</Link>,
             },
             {
               key: "3",

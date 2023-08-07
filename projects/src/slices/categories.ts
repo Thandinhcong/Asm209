@@ -1,14 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { ICate } from "../interfaces/categories";
-import { addCate, deleteCate, updateCate } from "../actions/categories";
+import { addCate, deleteCate, listCates, updateCate } from "../actions/categories";
 
 
 const initialState = {
-    Categorys: [],
+    categories: [],
     isLoading: false,
     error: ""
 } as {
-    Categorys: ICate[],
+    categories: ICate[],
     isLoading: boolean,
     error: string
 }
@@ -16,17 +16,26 @@ const initialState = {
 const CateSlice = createSlice({
     name: "categories",
     initialState,
-    reducers: {
-
-    },
+    reducers: {},
     extraReducers: (builder) => {
+        //list
+        builder.addCase(listCates.pending, (state) => {
+            state.isLoading = true
+        })
+        builder.addCase(listCates.fulfilled, (state, action) => {
+            state.isLoading = false
+            state.categories = action.payload
+        })
+        builder.addCase(listCates.rejected, (state) => {
+            state.error = "fail rồi"
+        })
         //add
         builder.addCase(addCate.pending, (state) => {
             state.isLoading = true
         })
         builder.addCase(addCate.fulfilled, (state, action) => {
-            state.isLoading = false,
-                state.Categorys.push(action.payload)
+            state.isLoading = false
+            state.categories.push(action.payload)
         })
         builder.addCase(addCate.rejected, (state) => {
             state.error = "fail rồi"
@@ -38,7 +47,7 @@ const CateSlice = createSlice({
         builder.addCase(updateCate.fulfilled, (state, action) => {
             state.isLoading = false;
             const category = action.payload;
-            state.Categorys = state.Categorys.map((item: ICate) =>
+            state.categories = state.categories.map((item: ICate) =>
                 item._id === category._id ? category : item);
         })
         builder.addCase(updateCate.rejected, (state) => {
@@ -51,9 +60,9 @@ const CateSlice = createSlice({
         })
         builder.addCase(deleteCate.fulfilled, (state, action) => {
             state.isLoading = false;
-            const id = action.payload;
-            state.Categorys = state.Categorys.filter((item: any) =>
-                item._id !== id);
+            if (Array.isArray(state.categories)) {
+                state.categories = state.categories.filter((item: any) => item._id !== action.payload);
+            }
         })
         builder.addCase(deleteCate.rejected, (state) => {
             state.error = "fail rồi"

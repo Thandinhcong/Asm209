@@ -29,7 +29,6 @@ function App() {
           <Route index element={<DashBoard />} />
           <Route path="add-product" element={<AddProduct />} />
           <Route path="edit/:_id" element={<EditProduct />} />
-
           <Route path="categories" element={<ListCates />} />
           <Route path="add-cate" element={<AddCategorys />} />
 

@@ -23,8 +23,6 @@ const Login = () => {
     const onHandleSubmit = async (users: SigninForm) => {
         try {
             const response = await dispatch(signin(users)) as any;
-
-
             if (response.payload.data.user.role === "admin") {
                 toast.success("Đăng nhập admin thành công!", {
                     position: toast.POSITION.TOP_RIGHT
