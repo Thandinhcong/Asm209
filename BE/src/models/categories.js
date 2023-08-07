@@ -3,11 +3,6 @@ const schemaCategories = mongoose.Schema({
     name: {
         type: String,
         require: true,
-    }
-    ,
-    image: {
-        type: String,
-        require: true
     },
     products: [{
         type: mongoose.Types.ObjectId,

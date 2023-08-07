@@ -12,6 +12,8 @@ import LayOutAdmin from "./pages/admin/Layout";
 import DashBoard from "./pages/admin/DashBoard/index";
 import AddProduct from "./pages/admin/Add/index";
 import EditProduct from "./pages/admin/Edit/index";
+import AddCategorys from "./pages/admin/Add/categories";
+import ListCates from "./pages/admin/DashBoard/categories";
 function App() {
   return (
     <BrowserRouter>
@@ -27,6 +29,10 @@ function App() {
           <Route index element={<DashBoard />} />
           <Route path="add-product" element={<AddProduct />} />
           <Route path="edit/:_id" element={<EditProduct />} />
+
+          <Route path="categories" element={<ListCates />} />
+          <Route path="add-cate" element={<AddCategorys />} />
+
         </Route>
         <Route path="*" element={<NotFoundPage />} />
       </Routes>

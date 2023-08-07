@@ -9,10 +9,10 @@ import { useGetCategoriesQuery } from "../categoryApi";
 import { ICate } from "../../../interfaces/categories";
 import type { NotificationPlacement } from "antd/es/notification/interface";
 const DashBoard = () => {
-  const { data, isLoading, isFetching, isError } = useGetProductsQuery();
+  const { data, isLoading, isFetching } = useGetProductsQuery();
   const [deleteProduct, { isLoading: isDeleting }] = useDeleteProductMutation();
   const { data: categories } = useGetCategoriesQuery();
-  const [api, contextHolder] = notification.useNotification();
+  const [api] = notification.useNotification();
 
   const categoryData = categories?.category;
 
